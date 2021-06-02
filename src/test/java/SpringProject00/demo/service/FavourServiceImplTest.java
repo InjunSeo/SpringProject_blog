@@ -24,7 +24,7 @@ class FavourServiceImplTest {
 
     @Test
     void add(){
-        Essay essay = new Essay();
+        Essay essay = new Essay("Seo", "IBE", "Infer to the best explanation");
         essay.setId(new Long(1));
         essay.setWriter("seomoon");
         Favouring favouring = new Favouring();
@@ -37,7 +37,7 @@ class FavourServiceImplTest {
 
     @Test
     void findPeopleWhoFavour() {
-        Essay essay = new Essay();
+        Essay essay = new Essay("Seo", "IBE", "Infer to the best explanation");
         essay.setId(new Long(1));
         essay.setWriter("seomoon");
         Favouring favouring = new Favouring();
@@ -54,7 +54,7 @@ class FavourServiceImplTest {
 
     @Test
     void countFavour(){
-        Essay essay = new Essay();
+        Essay essay = new Essay("Seo", "IBE", "Infer to the best explanation");
         essay.setId(new Long(1));
         essay.setWriter("seomoon");
         Favouring favouring = new Favouring();

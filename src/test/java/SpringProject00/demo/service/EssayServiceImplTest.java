@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EssayServiceImplTest {
@@ -24,24 +25,25 @@ class EssayServiceImplTest {
 
     @Test
     public void write() {
-        Essay essay = new Essay();
-        essay.setWriter("seomoon");
-        essay.setTitle("on Denoting");
-        Essay write = essayService.write(essay);
+        Essay essay1 = new Essay("Seo", "IBE", "Inference");
+        Essay write = essayService.write(essay1);
         Essay findEssay = essayRepository.findById(write.getId()).get();
         assertEquals(write.getId(), findEssay.getId());
     }
 
     @Test
     public void modify() {
-        Essay essay = new Essay();
-        essay.setWriter("seomoon");
-        essay.setTitle("on Denoting");
-        Essay write = essayService.write(essay);
-        write.setContent("Russell");
-        Essay modify = essayService.edit(write);
-        assertEquals(write.getId(), modify.getId());
-
+        Essay essay1 = new Essay("Seo", "IBE", "Inference");
+        Essay savedEssay = essayService.write(essay1);
+        Long essayId = savedEssay.getId();
+        //when
+        Essay essay2 = new Essay("Seo", "IBE", "inference to the best Explanation");
+        essayService.edit(essayId, essay2);
+        Essay findEssay = essayService.findById(essayId).get();
+        //Then
+        assertThat(findEssay.getTitle()).isEqualTo(essay2.getTitle());
+        assertThat(findEssay.getWriter()).isEqualTo(essay2.getWriter());
+        assertThat(findEssay.getContent()).isEqualTo(essay2.getContent());
     }
 
 }

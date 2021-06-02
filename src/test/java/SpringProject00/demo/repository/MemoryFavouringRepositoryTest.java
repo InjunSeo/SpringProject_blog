@@ -22,37 +22,36 @@ class MemoryFavouringRepositoryTest {
 
     @Test
     void addWhoFavour(){
-        Essay essay = new Essay();
-        essay.setWriter("seomoon");
-        essayRepository.save(essay);
+        Essay essay1 = new Essay("Seo", "IBE", "Infer to the best explanation");
+        essayRepository.save(essay1);
 
         Favouring favouring = new Favouring();
-        favouring.setEssayId(essay.getId());
+        favouring.setEssayId(essay1.getId());
         favouring.setWhoFavour("seomoon");
 
         repository.addWhoFavour(favouring);
-        List whoFavouring = repository.findWhoFavouring(essay);
+        List whoFavouring = repository.findWhoFavouring(essay1);
         System.out.println("whoFavouring = " + whoFavouring);
         assertThat(whoFavouring).contains(favouring);
     }
 
     @Test
     void findWhoFavour() {
-        Essay essay = new Essay();
-        essay.setWriter("seomoon");
-        essayRepository.save(essay);
+        Essay essay1 = new Essay("Seo", "IBE", "Infer to the best explanation");
+        essay1.setWriter("seomoon");
+        essayRepository.save(essay1);
 
         Favouring favouring1 = new Favouring();
-        favouring1.setEssayId(essay.getId());
+        favouring1.setEssayId(essay1.getId());
         favouring1.setWhoFavour("seostar");
         repository.addWhoFavour(favouring1);
 
         Favouring favouring2 = new Favouring();
-        favouring2.setEssayId(essay.getId());
+        favouring2.setEssayId(essay1.getId());
         favouring2.setWhoFavour("ubersky");
         repository.addWhoFavour(favouring2);
 
-        List whoFavouring = repository.findWhoFavouring(essay);
+        List whoFavouring = repository.findWhoFavouring(essay1);
         assertThat(whoFavouring.size()).isEqualTo(2);
 
     }
