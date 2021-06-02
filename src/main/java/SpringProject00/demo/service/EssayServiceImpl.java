@@ -21,9 +21,9 @@ public class EssayServiceImpl implements EssayService {
     }
 
     @Override
-    public Essay edit(Essay essay) {
-        Essay modify = essayRepository.modify(essay);
-        return modify;
+    public Essay edit(Long essayId, Essay essay) {
+        Essay editedEssay = essayRepository.modify(essayId, essay);
+        return editedEssay;
     }
 
     @Override

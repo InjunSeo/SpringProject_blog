@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface EssayService {
     Essay write(Essay essay);
 
-    Essay edit(Essay essay);
+    Essay edit(Long essayId, Essay essay);
 
     Essay delete(Essay essay);
 
