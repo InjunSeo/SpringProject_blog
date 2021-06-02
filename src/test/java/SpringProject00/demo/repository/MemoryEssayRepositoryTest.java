@@ -18,8 +18,7 @@ class MemoryEssayRepositoryTest {
 
     @Test
     public void save(){
-        Essay essay1 = new Essay();
-        essay1.setWriter("Seo");
+        Essay essay1 = new Essay("Seo", "IBE", "Inference");
         repository.save(essay1);
         Essay result = repository.findByName(essay1.getWriter()).get();
         assertThat(result).isEqualTo(essay1);
@@ -27,27 +26,19 @@ class MemoryEssayRepositoryTest {
 
     @Test
     public void modify() {
-        Essay essay1 = new Essay();
-        essay1.setWriter("Seo");
-        essay1.setTitle("IBE");
-        essay1.setContent("Infer to the best explanation");
+        Essay essay1 = new Essay("Seo", "IBE", "Infer to the best explanation");
         repository.save(essay1);
-        Essay essay2 = new Essay();
-        essay2.setId(essay1.getId());
-        essay2.setWriter("seomoon");
-        essay2.setWriter("moon");
-        essay2.setTitle("Baysian");
-        essay2.setContent("P on prior beliefs");
-        repository.modify(essay2);
-        Essay result = repository.findById(essay1.getId()).get();
+        Long essayId = essay1.getId();
+        Essay essay2 = new Essay("seomoon", "Baysian", "P on prior beliefs");
+        repository.modify(essayId, essay2);
+        Essay result = repository.findById(essayId).get();
         assertThat(result.getWriter()).isEqualTo(essay2.getWriter());
     }
 
     @Test
     public void favour(){
         //Given
-        Essay essay1 = new Essay();
-        essay1.setWriter("Seo");
+        Essay essay1 = new Essay("Seo", "IBE", "Infer to the best explanation");
         repository.save(essay1);
         Essay essay = repository.findByName(essay1.getWriter()).get();
         int favoured = essay.getFavoured();
