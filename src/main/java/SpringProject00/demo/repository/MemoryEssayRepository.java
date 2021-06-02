@@ -18,6 +18,15 @@ public class MemoryEssayRepository implements EssayRepository {
     }
 
     @Override
+    public Essay modify(Long essayId, Essay updateParam) {
+        Essay findEssay = findById(essayId).get();
+        findEssay.setTitle(updateParam.getTitle());
+        findEssay.setWriter(updateParam.getWriter());
+        findEssay.setContent(updateParam.getContent());
+        return updateParam;
+    }
+
+    @Override
     public Optional<Essay> findById(long id) {
         return Optional.ofNullable(store.get(id));
     }
@@ -41,11 +50,6 @@ public class MemoryEssayRepository implements EssayRepository {
         return new ArrayList<>(store.values());
     }
 
-    @Override
-    public Essay modify(Essay essay) {
-        store.replace(essay.getId(), essay);
-        return essay;
-    }
 
     @Override
     public Essay delete(Essay essay) {
