@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface EssayRepository {
     Essay save(Essay essay);
 
-    Essay modify(Essay essay);
+    Essay modify(Long essayId, Essay updateParam);
 
     Essay delete(Essay essay);
 
