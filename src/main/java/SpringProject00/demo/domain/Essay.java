@@ -3,10 +3,13 @@ package SpringProject00.demo.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.sql.Date;
 
-@Getter
-@Setter
+@Getter @Setter
 public class Essay {
     private Long id;
     private String writer;
@@ -15,9 +18,14 @@ public class Essay {
     private String content;
     private int favoured;
 
+    public Essay() {
+    }
+
     public Essay(String writer, String title, String content) {
         this.writer = writer;
         this.title = title;
         this.content = content;
     }
+
+
 }

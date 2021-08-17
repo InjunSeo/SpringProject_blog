@@ -16,7 +16,8 @@ public class JpaEssayRepository implements EssayRepository {
 
     @Override
     public Essay save(Essay essay) {
-        return null;
+        em.persist(essay);
+        return essay;
     }
 
     @Override
@@ -36,12 +37,16 @@ public class JpaEssayRepository implements EssayRepository {
 
     @Override
     public Optional<Essay> findById(long id) {
-        return Optional.empty();
+        Essay essay = em.find(Essay.class, id);
+        return Optional.ofNullable(essay);
     }
 
     @Override
     public Optional<Essay> findByName(String writer) {
-        return Optional.empty();
+        List<Essay> result = em.createQuery("select m from Essay m where m.writer = :writer", Essay.class)
+                .setParameter("writer", writer)
+                .getResultList();
+        return result.stream().findAny();
     }
 
     @Override
@@ -51,6 +56,7 @@ public class JpaEssayRepository implements EssayRepository {
 
     @Override
     public List<Essay> findAll() {
-        return null;
+        return em.createQuery("select m from Essay m", Essay.class)
+                .getResultList();
     }
 }

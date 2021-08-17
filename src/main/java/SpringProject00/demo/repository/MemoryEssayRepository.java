@@ -2,9 +2,11 @@ package SpringProject00.demo.repository;
 
 import SpringProject00.demo.domain.Essay;
 import SpringProject00.demo.domain.Member;
+import org.springframework.stereotype.Component;
 
 import javax.swing.text.html.Option;
 import java.util.*;
+
 
 public class MemoryEssayRepository implements EssayRepository {
     private static Map<Long, Essay> store = new HashMap();

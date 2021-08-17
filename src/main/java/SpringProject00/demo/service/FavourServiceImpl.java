@@ -4,12 +4,16 @@ import SpringProject00.demo.domain.Essay;
 import SpringProject00.demo.domain.Favouring;
 import SpringProject00.demo.domain.Member;
 import SpringProject00.demo.repository.MemoryFavouringRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class FavourServiceImpl implements FavourService {
     private final MemoryFavouringRepository favouringRepository;
 
+    @Autowired
     public FavourServiceImpl(MemoryFavouringRepository favouringRepository) {
         this.favouringRepository = favouringRepository;
     }

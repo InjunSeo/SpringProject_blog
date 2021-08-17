@@ -1,11 +1,12 @@
 package SpringProject00.demo.repository;
 
 import SpringProject00.demo.domain.Member;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-
+@Component
 public class MemoryMemberRepository implements MemberRepository {
     private static Map<String, Member> store = new HashMap<>();
     private static Date createDate;

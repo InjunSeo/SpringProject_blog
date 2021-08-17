@@ -3,9 +3,11 @@ package SpringProject00.demo.repository;
 import SpringProject00.demo.domain.Essay;
 import SpringProject00.demo.domain.Favouring;
 import SpringProject00.demo.domain.Member;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class MemoryFavouringRepository implements FavouringRepository{
     private static Map<Long, ArrayList> store = new HashMap();
     private ArrayList<Favouring> listOfWhoFavour;
