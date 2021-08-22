@@ -17,11 +17,17 @@ public class HomeController {
     private final EssayService essayService;
 
     @GetMapping("/")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("/home")
     public String home(Model model) {
         List<Essay> essays = essayService.findAll();
         model.addAttribute("lists", essays);
-        return "index";
+        return "home";
     }
+
 
     @GetMapping("login")
     public String login(Model model) {
