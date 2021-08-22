@@ -1,11 +1,16 @@
 package SpringProject00.demo.repository;
 
 import SpringProject00.demo.domain.Essay;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
+@Primary
 public class JpaEssayRepository implements EssayRepository {
 
     private final EntityManager em;
