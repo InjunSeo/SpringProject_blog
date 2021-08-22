@@ -2,8 +2,10 @@ package SpringProject00.demo.service;
 
 import SpringProject00.demo.domain.Essay;
 import SpringProject00.demo.repository.EssayRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -11,14 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional
-@Component
+@Service
+@RequiredArgsConstructor
 public class EssayServiceImpl implements EssayService {
     private final EssayRepository essayRepository;
-
-    @Autowired
-    public EssayServiceImpl(EssayRepository essayRepository) {
-        this.essayRepository = essayRepository;
-    }
 
     @Override
     public Essay write(Essay essay) {
