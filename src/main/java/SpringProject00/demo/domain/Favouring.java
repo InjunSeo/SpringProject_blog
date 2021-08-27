@@ -1,12 +1,13 @@
 package SpringProject00.demo.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Favouring {
 
     private long essayId;
     private String whoFavour;
-    private Date favourDate;
+    private LocalDateTime favourDate;
 
     public long getEssayId() {
         return essayId;
@@ -24,13 +25,11 @@ public class Favouring {
         this.whoFavour = whoFavour;
     }
 
-    public Date getFavourDate() {
+    public LocalDateTime getFavourDate() {
         return favourDate;
     }
 
-    public void setFavourDate(Date fovourDate) {
-        this.favourDate = fovourDate;
+    public void setFavourDate(LocalDateTime favourDate) {
+        this.favourDate = favourDate;
     }
-
-
 }
