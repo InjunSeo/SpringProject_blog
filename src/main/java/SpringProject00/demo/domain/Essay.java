@@ -1,34 +1,32 @@
 package SpringProject00.demo.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Getter @Setter
+@RequiredArgsConstructor @NoArgsConstructor
 public class Essay {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ESSAY_ID")
     private Long id;
-    private String writer;
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    @NonNull
+    private Member member;
+
+    @NonNull
     private String title;
-    private Date createDate;
+
+    @NonNull
     private String content;
+
+    private Date createDate;
+
     private int favoured;
-
-    public Essay() {
-    }
-
-    public Essay(String writer, String title, String content) {
-        this.writer = writer;
-        this.title = title;
-        this.content = content;
-    }
 
 
 }
