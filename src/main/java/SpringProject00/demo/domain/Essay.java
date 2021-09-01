@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -26,7 +28,8 @@ public class Essay {
 
     private Date createDate;
 
-    private int favoured;
+    @OneToMany(mappedBy = "essay")
+    private List<Favouring> favours = new ArrayList<>();
 
 
 }
