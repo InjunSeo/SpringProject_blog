@@ -1,35 +1,26 @@
 package SpringProject00.demo.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
+@Entity
+@Getter @Setter
 public class Favouring {
+    @Id @GeneratedValue
+    @Column(name = "FAVOURING_ID")
+    private Long id;
 
-    private long essayId;
-    private String whoFavour;
+    @ManyToOne
+    @JoinColumn(name = "ESSAY_ID")
+    private Essay essay;
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
     private LocalDateTime favourDate;
 
-    public long getEssayId() {
-        return essayId;
-    }
-
-    public void setEssayId(long essayId) {
-        this.essayId = essayId;
-    }
-
-    public String getWhoFavour() {
-        return whoFavour;
-    }
-
-    public void setWhoFavour(String whoFavour) {
-        this.whoFavour = whoFavour;
-    }
-
-    public LocalDateTime getFavourDate() {
-        return favourDate;
-    }
-
-    public void setFavourDate(LocalDateTime favourDate) {
-        this.favourDate = favourDate;
-    }
 }
