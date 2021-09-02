@@ -1,6 +1,7 @@
 package SpringProject00.demo.controller;
 
 import SpringProject00.demo.domain.Essay;
+import SpringProject00.demo.domain.Member;
 import SpringProject00.demo.service.EssayService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,8 +34,8 @@ public class EssayController {
     }
 
     //    @PostMapping(value = "/new")
-    public String write(EssayForm form, Model model) {
-        Essay essay = new Essay(form.getId(), form.getTitle(), form.getContent());
+    public String write(Member member, EssayForm form, Model model) {
+        Essay essay = new Essay(member, form.getTitle(), form.getContent());
         essayService.write(essay);
         model.addAttribute("desc", essay);
         return "/essays/essayDesc";
