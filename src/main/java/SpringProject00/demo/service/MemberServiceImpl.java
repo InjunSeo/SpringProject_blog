@@ -2,6 +2,7 @@ package SpringProject00.demo.service;
 
 import SpringProject00.demo.domain.Member;
 import SpringProject00.demo.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -9,15 +10,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService{
 
     private final MemberRepository memberRepository;
-
-    @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
 
     public String join(Member member) {
         validateDuplicationMember(member);

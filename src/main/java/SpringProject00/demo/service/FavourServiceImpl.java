@@ -3,25 +3,25 @@ package SpringProject00.demo.service;
 import SpringProject00.demo.domain.Essay;
 import SpringProject00.demo.domain.Favouring;
 import SpringProject00.demo.domain.Member;
+import SpringProject00.demo.repository.FavouringRepository;
 import SpringProject00.demo.repository.MemoryFavouringRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class FavourServiceImpl implements FavourService {
-    private final MemoryFavouringRepository favouringRepository;
-
-    @Autowired
-    public FavourServiceImpl(MemoryFavouringRepository favouringRepository) {
-        this.favouringRepository = favouringRepository;
-    }
+    private final FavouringRepository favouringRepository;
 
     @Override
     public String addWhoFavour(Favouring favouring) {
         favouringRepository.addWhoFavour(favouring);
-        return favouring.getWhoFavour();
+//        return favouring.getWhoFavour();
+        return null;
     }
 
     @Override
