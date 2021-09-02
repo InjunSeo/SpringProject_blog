@@ -4,6 +4,7 @@ import SpringProject00.demo.domain.Member;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Component
@@ -14,7 +15,7 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public Member save(Member member) {
 
-        member.setCreateDate(createDate);
+        member.setCreateDate(LocalDateTime.now());
         store.put(member.getId(), member);
         return member;
     }
