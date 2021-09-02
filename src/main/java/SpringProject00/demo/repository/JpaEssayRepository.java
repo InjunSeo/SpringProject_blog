@@ -1,6 +1,7 @@
 package SpringProject00.demo.repository;
 
 import SpringProject00.demo.domain.Essay;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -11,13 +12,10 @@ import java.util.Optional;
 
 @Repository
 @Primary
+@RequiredArgsConstructor
 public class JpaEssayRepository implements EssayRepository {
 
     private final EntityManager em;
-
-    public JpaEssayRepository(EntityManager em) {
-        this.em = em;
-    }
 
     @Override
     public Essay save(Essay essay) {
@@ -48,7 +46,7 @@ public class JpaEssayRepository implements EssayRepository {
 
     @Override
     public Optional<Essay> findByName(String writer) {
-        List<Essay> result = em.createQuery("select m from Essay m where m.writer = :writer", Essay.class)
+        List<Essay> result = em.createQuery("select m from Essay m where m.member = :writer", Essay.class)
                 .setParameter("writer", writer)
                 .getResultList();
         return result.stream().findAny();
