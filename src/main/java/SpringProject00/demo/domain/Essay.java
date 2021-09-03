@@ -15,7 +15,7 @@ public class Essay {
     @Column(name = "ESSAY_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     @NonNull
     private Member member;
@@ -31,5 +31,6 @@ public class Essay {
     @OneToMany(mappedBy = "essay")
     private List<Favouring> favours = new ArrayList<>();
 
-
+    @ManyToMany(mappedBy = "essays")
+    private List<Category> categories = new ArrayList<>();
 }
